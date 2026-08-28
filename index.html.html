@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon | Premium Dates</title>
+<meta name="description" content="Something naturally delicious is coming soon. Premium dates, carefully selected for you.">
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brown: #3a2118;
+    --brown-soft: #6d4634;
+    --cream: #fbf6ed;
+    --gold: #c99a55;
+    --gold-light: #e5c58e;
+    --white: #fffdf9;
+  }
+
+  html, body { min-height: 100%; }
+
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--brown);
+    background: var(--cream);
+  }
+
+  .page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 46% 54%;
+    overflow: hidden;
+  }
+
+  .visual {
+    position: relative;
+    min-height: 100vh;
+    background:
+      linear-gradient(180deg, rgba(38,20,12,.12), rgba(38,20,12,.55)),
+      url("https://images.unsplash.com/photo-1591091860477-9e4c4c6c5b0f?auto=format&fit=crop&w=1400&q=85")
+      center / cover no-repeat;
+  }
+
+  /* Elegant fallback if the photo above is unavailable */
+  .visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 25%, rgba(255,224,165,.28), transparent 30%),
+      linear-gradient(135deg, rgba(62,31,17,.12), rgba(36,17,10,.58));
+    pointer-events: none;
+  }
+
+  .visual-content {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: 9%;
+    color: white;
+    z-index: 1;
+  }
+
+  .eyebrow {
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: .28em;
+    font-size: 11px;
+    margin-bottom: 16px;
+    color: var(--gold-light);
+  }
+
+  .visual h2 {
+    font-size: clamp(34px, 4vw, 58px);
+    line-height: 1.02;
+    font-weight: 500;
+    max-width: 500px;
+  }
+
+  .visual p {
+    margin-top: 18px;
+    max-width: 410px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,.84);
+  }
+
+  .content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 9%;
+    background:
+      radial-gradient(circle at 90% 10%, rgba(201,154,85,.15), transparent 26%),
+      var(--cream);
+  }
+
+  .content::after {
+    content: "✦";
+    position: absolute;
+    top: 8%;
+    right: 8%;
+    color: rgba(201,154,85,.35);
+    font-size: 28px;
+  }
+
+  .inner {
+    width: min(560px, 100%);
+    text-align: center;
+  }
+
+  .brand {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: .42em;
+    margin-left: .42em;
+    color: var(--brown);
+  }
+
+  .brand-line {
+    width: 42px;
+    height: 2px;
+    background: var(--gold);
+    margin: 18px auto 32px;
+  }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 15px;
+    border: 1px solid rgba(201,154,85,.45);
+    border-radius: 100px;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    color: var(--brown-soft);
+    background: rgba(255,255,255,.35);
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 5px rgba(201,154,85,.13);
+  }
+
+  h1 {
+    margin-top: 27px;
+    font-size: clamp(42px, 5vw, 72px);
+    line-height: .98;
+    font-weight: 500;
+    letter-spacing: -.035em;
+  }
+
+  .lead {
+    margin: 24px auto 0;
+    max-width: 470px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #74594a;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 32px auto;
+    max-width: 300px;
+    color: var(--gold);
+  }
+
+  .divider::before, .divider::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: rgba(201,154,85,.45);
+  }
+
+  .divider span { font-size: 13px; }
+
+  .signup {
+    display: flex;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 5px;
+    border: 1px solid rgba(109,70,52,.22);
+    border-radius: 8px;
+    background: rgba(255,255,255,.7);
+  }
+
+  .signup input {
+    min-width: 0;
+    flex: 1;
+    border: 0;
+    outline: 0;
+    padding: 14px 15px;
+    background: transparent;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: var(--brown);
+  }
+
+  .signup input::placeholder { color: #9a8275; }
+
+  .signup button {
+    border: 0;
+    border-radius: 5px;
+    padding: 0 20px;
+    background: var(--brown);
+    color: white;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    transition: transform .2s, background .2s;
+  }
+
+  .signup button:hover {
+    background: #573226;
+    transform: translateY(-1px);
+  }
+
+  .note {
+    margin-top: 13px;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    color: #9b8578;
+  }
+
+  .social {
+    margin-top: 34px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #80695b;
+  }
+
+  .social a {
+    color: var(--brown);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .footer {
+    margin-top: 44px;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    color: #a58d80;
+    letter-spacing: .05em;
+  }
+
+  @media (max-width: 820px) {
+    .page { grid-template-columns: 1fr; }
+    .visual {
+      min-height: 43vh;
+      height: 43vh;
+    }
+    .visual-content {
+      bottom: 10%;
+    }
+    .visual h2 { font-size: 38px; }
+    .content {
+      min-height: 57vh;
+      padding: 55px 7%;
+    }
+    .content::after { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .visual { min-height: 35vh; height: 35vh; }
+    .visual-content { left: 8%; right: 8%; bottom: 9%; }
+    .visual p { display: none; }
+    .content { padding: 48px 22px; }
+    .signup { flex-direction: column; gap: 5px; }
+    .signup button { height: 45px; }
+    .signup input { height: 45px; }
+  }
+</style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="visual" aria-label="Premium dates">
+      <div class="visual-content">
+        <div class="eyebrow">Naturally selected • Premium quality</div>
+        <h2>Sweetness,<br>the natural way.</h2>
+        <p>
+          We're preparing something special for date lovers —
+          thoughtfully selected dates with a premium experience.
+        </p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="inner">
+
+        <!-- Change HALIGE to your actual brand name -->
+        <div class="brand">HALIGE</div>
+        <div class="brand-line"></div>
+
+        <div class="status">
+          <span class="dot"></span>
+          Launching Soon
+        </div>
+
+        <h1>Something<br>delicious is coming.</h1>
+
+        <p class="lead">
+          Premium dates, carefully selected for you.
+          We're putting the finishing touches on our new online store.
+        </p>
+
+        <div class="divider"><span>✦</span></div>
+
+        <!-- Replace this form with your email service later -->
+        <form class="signup" onsubmit="subscribe(event)">
+          <input type="email" id="email" placeholder="Enter your email address" required>
+          <button type="submit">Notify Me</button>
+        </form>
+
+        <div class="note">Be the first to know when we launch.</div>
+
+        <div class="social">
+          Follow our journey on
+          <!-- Change the Instagram URL and handle -->
+          <a href="https://instagram.com/" target="_blank" rel="noopener">@yourbrand</a>
+        </div>
+
+        <div class="footer">© 2026 HALIGE • Premium Dates</div>
+      </div>
+    </section>
+
+  </main>
+
+<script>
+function subscribe(event) {
+  event.preventDefault();
+  const email = document.getElementById("email").value;
+  alert("Thank you! We'll notify you at " + email);
+}
+</script>
+</body>
+</html>
