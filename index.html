@@ -10,9 +10,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -30,18 +32,28 @@
             --white: #ffffff;
         }
 
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
         body {
             font-family: "DM Sans", sans-serif;
             background: var(--cream);
             color: var(--text);
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .page {
             min-height: 100vh;
+            width: 100%;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
+
 
         /* ================= HEADER ================= */
 
@@ -63,6 +75,7 @@
             font-weight: 700;
             letter-spacing: -1px;
             color: var(--dark);
+            white-space: nowrap;
         }
 
         .logo span {
@@ -76,12 +89,14 @@
             color: #68736b;
         }
 
+
         /* ================= HERO ================= */
 
         .hero {
             min-height: 100vh;
+            width: 100%;
             display: grid;
-            grid-template-columns: 1.05fr 0.95fr;
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
             align-items: center;
             padding: 100px 7% 60px;
             gap: 50px;
@@ -98,12 +113,14 @@
             background: rgba(184, 148, 82, 0.08);
             right: -170px;
             top: -130px;
+            pointer-events: none;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
             max-width: 650px;
+            width: 100%;
         }
 
         .eyebrow {
@@ -123,6 +140,7 @@
             width: 32px;
             height: 1px;
             background: var(--gold);
+            flex-shrink: 0;
         }
 
         h1 {
@@ -147,6 +165,7 @@
             margin-bottom: 35px;
         }
 
+
         /* ================= CTA ================= */
 
         .notify-box {
@@ -162,13 +181,14 @@
 
         .notify-box input {
             flex: 1;
+            width: 100%;
+            min-width: 0;
             border: none;
             outline: none;
             background: transparent;
             padding: 15px 20px;
             font-family: inherit;
             font-size: 14px;
-            min-width: 0;
         }
 
         .notify-box input::placeholder {
@@ -181,10 +201,12 @@
             color: var(--white);
             border-radius: 40px;
             padding: 0 25px;
+            min-height: 46px;
             font-family: inherit;
             font-weight: 600;
             cursor: pointer;
             transition: 0.25s ease;
+            white-space: nowrap;
         }
 
         .notify-box button:hover {
@@ -199,6 +221,7 @@
             margin-left: 20px;
         }
 
+
         /* ================= VISUAL ================= */
 
         .visual {
@@ -207,18 +230,27 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            width: 100%;
         }
 
         .circle {
             width: min(470px, 80vw);
             height: min(470px, 80vw);
+            aspect-ratio: 1 / 1;
+
             border-radius: 50%;
+
             background: var(--dark);
+
             position: relative;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             box-shadow: 0 30px 80px rgba(24, 37, 29, 0.18);
+
+            flex-shrink: 0;
         }
 
         .circle::before {
@@ -227,6 +259,7 @@
             inset: 22px;
             border: 1px solid rgba(255,255,255,0.15);
             border-radius: 50%;
+            pointer-events: none;
         }
 
         .circle::after {
@@ -236,13 +269,23 @@
             height: 280px;
             border-radius: 50%;
             border: 1px solid rgba(184, 148, 82, 0.4);
+            pointer-events: none;
         }
 
         .visual-content {
             position: relative;
             z-index: 2;
+
+            width: 68%;
+            max-width: 300px;
+
             text-align: center;
             color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .visual-content .mini {
@@ -251,22 +294,36 @@
             text-transform: uppercase;
             color: #c7b07b;
             margin-bottom: 18px;
+            white-space: nowrap;
         }
 
         .visual-content h2 {
             font-family: "Playfair Display", serif;
-            font-size: 58px;
+
+            /*
+             * Responsive font size.
+             * This prevents "Naturally." from going
+             * outside the circle on smaller screens.
+             */
+            font-size: clamp(28px, 5vw, 58px);
+
+            line-height: 1.05;
             letter-spacing: -2px;
+
             margin-bottom: 10px;
+
+            white-space: nowrap;
         }
 
         .visual-content p {
             font-size: 14px;
             color: #b9c1bb;
             letter-spacing: 1px;
+            white-space: nowrap;
         }
 
-        /* Decorative dots */
+
+        /* ================= DECORATIVE DOTS ================= */
 
         .dot {
             position: absolute;
@@ -297,6 +354,7 @@
             opacity: 0.35;
         }
 
+
         /* ================= FOOTER ================= */
 
         footer {
@@ -310,6 +368,7 @@
             align-items: center;
             color: #8a918b;
             font-size: 12px;
+            z-index: 5;
         }
 
         .social {
@@ -327,46 +386,47 @@
             color: var(--dark);
         }
 
-        /* ================= RESPONSIVE ================= */
 
-        @media (max-width: 900px) {
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 1000px) {
 
             header {
-                padding: 23px 6%;
-            }
-
-            .header-text {
-                display: none;
+                padding: 24px 6%;
             }
 
             .hero {
                 grid-template-columns: 1fr;
-                padding: 110px 6% 90px;
+
+                min-height: auto;
+
+                padding: 120px 6% 90px;
+
+                gap: 50px;
+
                 text-align: center;
-                gap: 30px;
             }
 
             .hero-content {
-                margin: auto;
+                max-width: 700px;
+                margin: 0 auto;
             }
 
             .eyebrow {
                 justify-content: center;
             }
 
-            h1 {
-                font-size: clamp(48px, 12vw, 70px);
-                letter-spacing: -2px;
-            }
-
             .description {
                 margin-left: auto;
                 margin-right: auto;
-                font-size: 15px;
             }
 
             .notify-box {
-                margin: auto;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: left;
             }
 
             .small-note {
@@ -374,59 +434,174 @@
             }
 
             .visual {
-                min-height: 360px;
+                min-height: 420px;
             }
 
             .circle {
-                width: 340px;
-                height: 340px;
+                width: min(400px, 65vw);
+                height: min(400px, 65vw);
+            }
+
+            .circle::before {
+                inset: 19px;
             }
 
             .circle::after {
-                width: 210px;
-                height: 210px;
+                width: 240px;
+                height: 240px;
+            }
+
+            .visual-content {
+                width: 67%;
             }
 
             .visual-content h2 {
-                font-size: 48px;
+                font-size: clamp(30px, 6vw, 50px);
+            }
+
+            .visual-content .mini {
+                font-size: 10px;
+            }
+
+            .visual-content p {
+                font-size: 11px;
             }
 
             footer {
                 position: relative;
-                padding: 15px 6%;
-                flex-direction: column;
-                gap: 10px;
+                padding: 18px 6%;
             }
         }
 
-        @media (max-width: 500px) {
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 20px 6%;
+            }
+
+            .logo {
+                font-size: 29px;
+            }
+
+            .header-text {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+
+                padding:
+                    105px
+                    6%
+                    35px;
+
+                gap: 30px;
+            }
+
+            .eyebrow {
+                font-size: 10px;
+
+                letter-spacing: 2px;
+
+                margin-bottom: 18px;
+            }
+
+            .eyebrow::before {
+                width: 25px;
+            }
 
             h1 {
-                font-size: 48px;
+                font-size: clamp(42px, 13vw, 54px);
+
+                letter-spacing: -2px;
+
+                line-height: 1.05;
+
+                margin-bottom: 20px;
             }
+
+            .description {
+                font-size: 14px;
+
+                line-height: 1.7;
+
+                margin-bottom: 26px;
+            }
+
+
+            /* ================= MOBILE CTA ================= */
 
             .notify-box {
                 flex-direction: column;
-                background: transparent;
-                border: none;
-                box-shadow: none;
+
                 gap: 8px;
+
+                max-width: 100%;
+
+                padding: 0;
+
+                background: transparent;
+
+                border: none;
+
+                box-shadow: none;
             }
 
             .notify-box input {
+                width: 100%;
+
+                height: 52px;
+
                 background: white;
-                border: 1px solid #e3dfd4;
-                border-radius: 40px;
-                padding: 16px 20px;
+
+                border:
+                    1px solid
+                    #e3dfd4;
+
+                border-radius: 50px;
+
+                padding: 0 20px;
             }
 
             .notify-box button {
-                min-height: 50px;
+                width: 100%;
+
+                height: 52px;
+
+                min-height: 52px;
+            }
+
+            .small-note {
+                margin-top: 11px;
+
+                margin-left: 0;
+
+                font-size: 11px;
+            }
+
+
+            /* ================= MOBILE CIRCLE ================= */
+
+            .visual {
+                min-height: auto;
+
+                height: auto;
+
+                padding:
+                    10px
+                    0
+                    25px;
             }
 
             .circle {
-                width: 290px;
-                height: 290px;
+                width: min(290px, 78vw);
+
+                height: min(290px, 78vw);
             }
 
             .circle::before {
@@ -435,34 +610,267 @@
 
             .circle::after {
                 width: 175px;
+
                 height: 175px;
             }
 
+
+            /*
+             * Content width is deliberately smaller
+             * than the circle so the text always stays inside.
+             */
+
+            .visual-content {
+                width: 68%;
+
+                max-width: 200px;
+
+                padding: 0;
+            }
+
+
+            .visual-content .mini {
+                font-size: 8px;
+
+                letter-spacing: 2.5px;
+
+                margin-bottom: 13px;
+            }
+
+
             .visual-content h2 {
+                font-size: clamp(26px, 9vw, 40px);
+
+                line-height: 1.05;
+
+                letter-spacing: -1px;
+
+                margin-bottom: 11px;
+            }
+
+
+            .visual-content p {
+                font-size: 8px;
+
+                letter-spacing: 1.5px;
+            }
+
+
+            /* ================= MOBILE DOTS ================= */
+
+            .dot.one {
+                width: 9px;
+
+                height: 9px;
+
+                top: 8%;
+
+                right: 7%;
+            }
+
+            .dot.two {
+                width: 6px;
+
+                height: 6px;
+
+                bottom: 8%;
+
+                left: 7%;
+            }
+
+            .dot.three {
+                width: 11px;
+
+                height: 11px;
+
+                bottom: 5%;
+
+                right: 9%;
+            }
+
+
+            /* ================= MOBILE FOOTER ================= */
+
+            footer {
+                position: relative;
+
+                padding:
+                    15px
+                    6%
+                    22px;
+
+                flex-direction: column;
+
+                gap: 10px;
+
+                text-align: center;
+
+                font-size: 11px;
+            }
+
+            .social {
+                gap: 18px;
+            }
+        }
+
+
+        /* =====================================================
+           SMALL PHONES
+        ===================================================== */
+
+        @media (max-width: 380px) {
+
+            header {
+                padding-left: 5%;
+
+                padding-right: 5%;
+            }
+
+            .logo {
+                font-size: 27px;
+            }
+
+            .hero {
+                padding-left: 5%;
+
+                padding-right: 5%;
+
+                padding-top: 95px;
+            }
+
+            h1 {
                 font-size: 42px;
             }
 
-            footer {
-                text-align: center;
+            .description {
+                font-size: 13px;
+            }
+
+            .circle {
+                width: 255px;
+
+                height: 255px;
+            }
+
+            .circle::before {
+                inset: 13px;
+            }
+
+            .circle::after {
+                width: 155px;
+
+                height: 155px;
+            }
+
+            .visual-content {
+                width: 67%;
+
+                max-width: 175px;
+            }
+
+            .visual-content .mini {
+                font-size: 7px;
+
+                letter-spacing: 2px;
+
+                margin-bottom: 10px;
+            }
+
+            .visual-content h2 {
+                font-size: 28px;
+
+                letter-spacing: -0.8px;
+            }
+
+            .visual-content p {
+                font-size: 7px;
+
+                letter-spacing: 1.2px;
             }
         }
+
+
+        /* =====================================================
+           VERY SMALL PHONES
+        ===================================================== */
+
+        @media (max-width: 320px) {
+
+            .hero {
+                padding-top: 90px;
+            }
+
+            h1 {
+                font-size: 38px;
+            }
+
+            .description {
+                font-size: 12px;
+            }
+
+            .circle {
+                width: 230px;
+
+                height: 230px;
+            }
+
+            .circle::before {
+                inset: 12px;
+            }
+
+            .circle::after {
+                width: 140px;
+
+                height: 140px;
+            }
+
+            .visual-content {
+                width: 68%;
+
+                max-width: 160px;
+            }
+
+            .visual-content h2 {
+                font-size: 25px;
+
+                letter-spacing: -0.5px;
+            }
+
+            .visual-content .mini {
+                font-size: 6.5px;
+
+                letter-spacing: 1.8px;
+            }
+
+            .visual-content p {
+                font-size: 6.5px;
+            }
+        }
+
     </style>
 </head>
+
 
 <body>
 
 <div class="page">
 
+
     <header>
-        <div class="logo" ><span style="color:#A8783A">Ho</span><span style="color:#285C3A">Live</span></div>
+
+        <div class="logo">
+            <span style="color:#A8783A">Ho</span><span style="color:#285C3A">Live</span>
+        </div>
 
         <div class="header-text">
             Something good is coming
         </div>
+
     </header>
 
 
     <main class="hero">
+
 
         <section class="hero-content">
 
@@ -470,10 +878,12 @@
                 Coming Soon
             </div>
 
+
             <h1>
                 Good things<br>
                 take <em>time.</em>
             </h1>
+
 
             <p class="description">
                 We’re creating something special at Holive —
@@ -481,8 +891,11 @@
                 and made for everyday moments.
             </p>
 
-            <form class="notify-box"
-                  onsubmit="event.preventDefault(); notifyUser();">
+
+            <form
+                class="notify-box"
+                onsubmit="event.preventDefault(); notifyUser();"
+            >
 
                 <input
                     type="email"
@@ -496,6 +909,7 @@
                 </button>
 
             </form>
+
 
             <div class="small-note">
                 Be the first to know when we launch.
@@ -527,8 +941,11 @@
 
             </div>
 
+
             <div class="dot one"></div>
+
             <div class="dot two"></div>
+
             <div class="dot three"></div>
 
         </section>
@@ -543,27 +960,40 @@
         </div>
 
         <div class="social">
-            <a href="#" aria-label="Instagram">Instagram</a>
-            <a href="#" aria-label="Facebook">Facebook</a>
+
+            <a href="#" aria-label="Instagram">
+                Instagram
+            </a>
+
+            <a href="#" aria-label="Facebook">
+                Facebook
+            </a>
+
         </div>
 
     </footer>
+
 
 </div>
 
 
 <script>
+
     function notifyUser() {
-        const email = document.getElementById("email").value;
+
+        const email =
+            document.getElementById("email").value;
 
         alert(
-            "Thank you! We'll notify you when Holive launches."
+            "Thank you! We'll notify you when we launch."
         );
 
         document.getElementById("email").value = "";
+
     }
+
 </script>
 
 </body>
 </html>
-```
+
