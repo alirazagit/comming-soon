@@ -1,354 +1,569 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coming Soon | Premium Dates</title>
-<meta name="description" content="Something naturally delicious is coming soon. Premium dates, carefully selected for you.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+    <title>Holive — Something Good Is Coming</title>
+    <meta name="description" content="Holive — Premium goodness, thoughtfully packed. Something special is coming soon.">
 
-  :root {
-    --brown: #3a2118;
-    --brown-soft: #6d4634;
-    --cream: #fbf6ed;
-    --gold: #c99a55;
-    --gold-light: #e5c58e;
-    --white: #fffdf9;
-  }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-  html, body { min-height: 100%; }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  body {
-    font-family: Georgia, "Times New Roman", serif;
-    color: var(--brown);
-    background: var(--cream);
-  }
+        :root {
+            --dark: #18251d;
+            --dark-soft: #26382c;
+            --cream: #f7f4ec;
+            --cream-dark: #ebe6d8;
+            --gold: #b89452;
+            --text: #263129;
+            --muted: #68736b;
+            --white: #ffffff;
+        }
 
-  .page {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 46% 54%;
-    overflow: hidden;
-  }
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            min-height: 100vh;
+        }
 
-  .visual {
-    position: relative;
-    min-height: 100vh;
-    background:
-      linear-gradient(180deg, rgba(38,20,12,.12), rgba(38,20,12,.55)),
-      url("https://images.unsplash.com/photo-1591091860477-9e4c4c6c5b0f?auto=format&fit=crop&w=1400&q=85")
-      center / cover no-repeat;
-  }
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-  /* Elegant fallback if the photo above is unavailable */
-  .visual::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 30% 25%, rgba(255,224,165,.28), transparent 30%),
-      linear-gradient(135deg, rgba(62,31,17,.12), rgba(36,17,10,.58));
-    pointer-events: none;
-  }
+        /* ================= HEADER ================= */
 
-  .visual-content {
-    position: absolute;
-    left: 10%;
-    right: 10%;
-    bottom: 9%;
-    color: white;
-    z-index: 1;
-  }
+        header {
+            width: 100%;
+            padding: 28px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
 
-  .eyebrow {
-    font-family: Arial, sans-serif;
-    text-transform: uppercase;
-    letter-spacing: .28em;
-    font-size: 11px;
-    margin-bottom: 16px;
-    color: var(--gold-light);
-  }
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 31px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: var(--dark);
+        }
 
-  .visual h2 {
-    font-size: clamp(34px, 4vw, 58px);
-    line-height: 1.02;
-    font-weight: 500;
-    max-width: 500px;
-  }
+        .logo span {
+            color: var(--gold);
+        }
 
-  .visual p {
-    margin-top: 18px;
-    max-width: 410px;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.7;
-    color: rgba(255,255,255,.84);
-  }
+        .header-text {
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #68736b;
+        }
 
-  .content {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 9%;
-    background:
-      radial-gradient(circle at 90% 10%, rgba(201,154,85,.15), transparent 26%),
-      var(--cream);
-  }
+        /* ================= HERO ================= */
 
-  .content::after {
-    content: "✦";
-    position: absolute;
-    top: 8%;
-    right: 8%;
-    color: rgba(201,154,85,.35);
-    font-size: 28px;
-  }
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            align-items: center;
+            padding: 100px 7% 60px;
+            gap: 50px;
+            position: relative;
+            overflow: hidden;
+        }
 
-  .inner {
-    width: min(560px, 100%);
-    text-align: center;
-  }
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            background: rgba(184, 148, 82, 0.08);
+            right: -170px;
+            top: -130px;
+        }
 
-  .brand {
-    font-family: Arial, sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: .42em;
-    margin-left: .42em;
-    color: var(--brown);
-  }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+        }
 
-  .brand-line {
-    width: 42px;
-    height: 2px;
-    background: var(--gold);
-    margin: 18px auto 32px;
-  }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 22px;
+        }
 
-  .status {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    padding: 9px 15px;
-    border: 1px solid rgba(201,154,85,.45);
-    border-radius: 100px;
-    font-family: Arial, sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .18em;
-    color: var(--brown-soft);
-    background: rgba(255,255,255,.35);
-  }
+        .eyebrow::before {
+            content: "";
+            width: 32px;
+            height: 1px;
+            background: var(--gold);
+        }
 
-  .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--gold);
-    box-shadow: 0 0 0 5px rgba(201,154,85,.13);
-  }
+        h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(52px, 6vw, 88px);
+            line-height: 1.03;
+            letter-spacing: -3px;
+            color: var(--dark);
+            margin-bottom: 25px;
+        }
 
-  h1 {
-    margin-top: 27px;
-    font-size: clamp(42px, 5vw, 72px);
-    line-height: .98;
-    font-weight: 500;
-    letter-spacing: -.035em;
-  }
+        h1 em {
+            color: var(--gold);
+            font-style: normal;
+        }
 
-  .lead {
-    margin: 24px auto 0;
-    max-width: 470px;
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    line-height: 1.8;
-    color: #74594a;
-  }
+        .description {
+            max-width: 530px;
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--muted);
+            margin-bottom: 35px;
+        }
 
-  .divider {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin: 32px auto;
-    max-width: 300px;
-    color: var(--gold);
-  }
+        /* ================= CTA ================= */
 
-  .divider::before, .divider::after {
-    content: "";
-    height: 1px;
-    flex: 1;
-    background: rgba(201,154,85,.45);
-  }
+        .notify-box {
+            display: flex;
+            width: 100%;
+            max-width: 490px;
+            background: var(--white);
+            border: 1px solid #e3dfd4;
+            border-radius: 50px;
+            padding: 6px;
+            box-shadow: 0 15px 45px rgba(30, 40, 32, 0.08);
+        }
 
-  .divider span { font-size: 13px; }
+        .notify-box input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 15px 20px;
+            font-family: inherit;
+            font-size: 14px;
+            min-width: 0;
+        }
 
-  .signup {
-    display: flex;
-    max-width: 450px;
-    margin: 0 auto;
-    padding: 5px;
-    border: 1px solid rgba(109,70,52,.22);
-    border-radius: 8px;
-    background: rgba(255,255,255,.7);
-  }
+        .notify-box input::placeholder {
+            color: #9aa19b;
+        }
 
-  .signup input {
-    min-width: 0;
-    flex: 1;
-    border: 0;
-    outline: 0;
-    padding: 14px 15px;
-    background: transparent;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    color: var(--brown);
-  }
+        .notify-box button {
+            border: none;
+            background: var(--dark);
+            color: var(--white);
+            border-radius: 40px;
+            padding: 0 25px;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
 
-  .signup input::placeholder { color: #9a8275; }
+        .notify-box button:hover {
+            background: #304638;
+            transform: translateY(-1px);
+        }
 
-  .signup button {
-    border: 0;
-    border-radius: 5px;
-    padding: 0 20px;
-    background: var(--brown);
-    color: white;
-    cursor: pointer;
-    font-family: Arial, sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    transition: transform .2s, background .2s;
-  }
+        .small-note {
+            font-size: 12px;
+            color: #8b938d;
+            margin-top: 13px;
+            margin-left: 20px;
+        }
 
-  .signup button:hover {
-    background: #573226;
-    transform: translateY(-1px);
-  }
+        /* ================= VISUAL ================= */
 
-  .note {
-    margin-top: 13px;
-    font-family: Arial, sans-serif;
-    font-size: 10px;
-    color: #9b8578;
-  }
+        .visual {
+            min-height: 520px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
 
-  .social {
-    margin-top: 34px;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    color: #80695b;
-  }
+        .circle {
+            width: min(470px, 80vw);
+            height: min(470px, 80vw);
+            border-radius: 50%;
+            background: var(--dark);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 30px 80px rgba(24, 37, 29, 0.18);
+        }
 
-  .social a {
-    color: var(--brown);
-    text-decoration: none;
-    font-weight: 700;
-  }
+        .circle::before {
+            content: "";
+            position: absolute;
+            inset: 22px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+        }
 
-  .footer {
-    margin-top: 44px;
-    font-family: Arial, sans-serif;
-    font-size: 10px;
-    color: #a58d80;
-    letter-spacing: .05em;
-  }
+        .circle::after {
+            content: "";
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 1px solid rgba(184, 148, 82, 0.4);
+        }
 
-  @media (max-width: 820px) {
-    .page { grid-template-columns: 1fr; }
-    .visual {
-      min-height: 43vh;
-      height: 43vh;
-    }
-    .visual-content {
-      bottom: 10%;
-    }
-    .visual h2 { font-size: 38px; }
-    .content {
-      min-height: 57vh;
-      padding: 55px 7%;
-    }
-    .content::after { display: none; }
-  }
+        .visual-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
 
-  @media (max-width: 480px) {
-    .visual { min-height: 35vh; height: 35vh; }
-    .visual-content { left: 8%; right: 8%; bottom: 9%; }
-    .visual p { display: none; }
-    .content { padding: 48px 22px; }
-    .signup { flex-direction: column; gap: 5px; }
-    .signup button { height: 45px; }
-    .signup input { height: 45px; }
-  }
-</style>
+        .visual-content .mini {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #c7b07b;
+            margin-bottom: 18px;
+        }
+
+        .visual-content h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 58px;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+        }
+
+        .visual-content p {
+            font-size: 14px;
+            color: #b9c1bb;
+            letter-spacing: 1px;
+        }
+
+        /* Decorative dots */
+
+        .dot {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .dot.one {
+            width: 11px;
+            height: 11px;
+            top: 14%;
+            right: 12%;
+        }
+
+        .dot.two {
+            width: 7px;
+            height: 7px;
+            bottom: 15%;
+            left: 13%;
+            opacity: 0.6;
+        }
+
+        .dot.three {
+            width: 15px;
+            height: 15px;
+            bottom: 9%;
+            right: 18%;
+            opacity: 0.35;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #8a918b;
+            font-size: 12px;
+        }
+
+        .social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social a {
+            color: #7b847d;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .social a:hover {
+            color: var(--dark);
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            header {
+                padding: 23px 6%;
+            }
+
+            .header-text {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 110px 6% 90px;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .hero-content {
+                margin: auto;
+            }
+
+            .eyebrow {
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: clamp(48px, 12vw, 70px);
+                letter-spacing: -2px;
+            }
+
+            .description {
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 15px;
+            }
+
+            .notify-box {
+                margin: auto;
+            }
+
+            .small-note {
+                margin-left: 0;
+            }
+
+            .visual {
+                min-height: 360px;
+            }
+
+            .circle {
+                width: 340px;
+                height: 340px;
+            }
+
+            .circle::after {
+                width: 210px;
+                height: 210px;
+            }
+
+            .visual-content h2 {
+                font-size: 48px;
+            }
+
+            footer {
+                position: relative;
+                padding: 15px 6%;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            h1 {
+                font-size: 48px;
+            }
+
+            .notify-box {
+                flex-direction: column;
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                gap: 8px;
+            }
+
+            .notify-box input {
+                background: white;
+                border: 1px solid #e3dfd4;
+                border-radius: 40px;
+                padding: 16px 20px;
+            }
+
+            .notify-box button {
+                min-height: 50px;
+            }
+
+            .circle {
+                width: 290px;
+                height: 290px;
+            }
+
+            .circle::before {
+                inset: 15px;
+            }
+
+            .circle::after {
+                width: 175px;
+                height: 175px;
+            }
+
+            .visual-content h2 {
+                font-size: 42px;
+            }
+
+            footer {
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <main class="page">
 
-    <section class="visual" aria-label="Premium dates">
-      <div class="visual-content">
-        <div class="eyebrow">Naturally selected • Premium quality</div>
-        <h2>Sweetness,<br>the natural way.</h2>
-        <p>
-          We're preparing something special for date lovers —
-          thoughtfully selected dates with a premium experience.
-        </p>
-      </div>
-    </section>
+<div class="page">
 
-    <section class="content">
-      <div class="inner">
+    <header>
+        <div class="logo" ><span style="color:#A8783A">Ho</span><span style="color:#285C3A">Live</span></div>
 
-        <!-- Change Holive to your actual brand name -->
-        <div class="brand">Holive</div>
-        <div class="brand-line"></div>
-
-        <div class="status">
-          <span class="dot"></span>
-          Launching Soon
+        <div class="header-text">
+            Something good is coming
         </div>
+    </header>
 
-        <h1>Something<br>delicious is coming.</h1>
 
-        <p class="lead">
-          Premium dates, carefully selected for you.
-          We're putting the finishing touches on our new online store.
-        </p>
+    <main class="hero">
 
-        <div class="divider"><span>✦</span></div>
+        <section class="hero-content">
 
-        <!-- Replace this form with your email service later -->
-        <form class="signup" onsubmit="subscribe(event)">
-          <input type="email" id="email" placeholder="Enter your email address" required>
-          <button type="submit">Notify Me</button>
-        </form>
+            <div class="eyebrow">
+                Coming Soon
+            </div>
 
-        <div class="note">Be the first to know when we launch.</div>
+            <h1>
+                Good things<br>
+                take <em>time.</em>
+            </h1>
+
+            <p class="description">
+                We’re creating something special at Holive —
+                thoughtfully selected goodness, beautifully packed
+                and made for everyday moments.
+            </p>
+
+            <form class="notify-box"
+                  onsubmit="event.preventDefault(); notifyUser();">
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email address"
+                    required
+                >
+
+                <button type="submit">
+                    Notify Me
+                </button>
+
+            </form>
+
+            <div class="small-note">
+                Be the first to know when we launch.
+            </div>
+
+        </section>
+
+
+        <section class="visual">
+
+            <div class="circle">
+
+                <div class="visual-content">
+
+                    <div class="mini">
+                        Holive
+                    </div>
+
+                    <h2>
+                        Naturally.<br>
+                        Sweet.
+                    </h2>
+
+                    <p>
+                        COMING SOON
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="dot one"></div>
+            <div class="dot two"></div>
+            <div class="dot three"></div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <div>
+            © 2026 Holive. All rights reserved.
+        </div>
 
         <div class="social">
-          Follow our journey on
-          <!-- Change the Instagram URL and handle -->
-          <a href="https://instagram.com/" target="_blank" rel="noopener">@yourbrand</a>
+            <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="Facebook">Facebook</a>
         </div>
 
-        <div class="footer">© 2026 Holive • Premium Dates</div>
-      </div>
-    </section>
+    </footer>
 
-  </main>
+</div>
+
 
 <script>
-function subscribe(event) {
-  event.preventDefault();
-  const email = document.getElementById("email").value;
-  alert("Thank you! We'll notify you at " + email);
-}
+    function notifyUser() {
+        const email = document.getElementById("email").value;
+
+        alert(
+            "Thank you! We'll notify you when Holive launches."
+        );
+
+        document.getElementById("email").value = "";
+    }
 </script>
+
 </body>
 </html>
+```
